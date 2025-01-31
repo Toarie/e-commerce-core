@@ -1,4 +1,4 @@
-from src.product import Product
+from src.product import Product, Smartphone, LawnGrass
 from src.category import Category
 
 def test_category_initialization():
@@ -26,3 +26,10 @@ def test_category_str():
     product = Product("Test Product", "Test Description", 100.0, 10)
     category = Category("Test Category", "Test Description", [product])
     assert str(category) == "Test Category, количество продуктов: 10 шт."
+
+def test_add_invalid_product():
+    category = Category("Test Category", "Test Description", [])
+    try:
+        category.add_product("Not a product")
+    except TypeError as e:
+        assert str(e) == "Можно добавлять только объекты класса Product или его наследников"
