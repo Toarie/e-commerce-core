@@ -21,3 +21,8 @@ def test_private_products():
     product = Product("Test Product", "Test Description", 100.0, 10)
     category = Category("Test Category", "Test Description", [product])
     assert hasattr(category, '_Category__products')
+
+def test_category_str():
+    product = Product("Test Product", "Test Description", 100.0, 10)
+    category = Category("Test Category", "Test Description", [product])
+    assert str(category) == "Test Category, количество продуктов: 10 шт."
