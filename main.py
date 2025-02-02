@@ -1,4 +1,4 @@
-from src.product import Product
+from src.product import Product, Smartphone, LawnGrass
 from src.category import Category
 
 if __name__ == "__main__":
@@ -37,4 +37,19 @@ if __name__ == "__main__":
     print("Общее количество категорий:", Category.category_count)
     print("Общее количество продуктов:", Category.product_count)
 
-    # Создаем новый продукт через класс-мет
+    # Создаем новые продукты через классы Smartphone и LawnGrass
+    smartphone = Smartphone("iPhone 15", "Смартфон Apple", 999.0, 10, "High", "15 Pro", "256GB", "Black")
+    lawn_grass = LawnGrass("Газонная трава", "Трава для газона", 50.0, 100, "Россия", "2 недели", "Зеленая")
+
+    # Создаем новую категорию
+    electronics = Category("Электроника", "Категория для электроники")
+
+    # Добавляем продукты в категорию
+    electronics.add_product(smartphone)
+    # electronics.add_product(lawn_grass)  # Это вызовет ошибку, так как газонная трава не относится к электронике
+
+    # Выводим информацию
+    print("\nИнформация о новых продуктах и категории:")
+    print(smartphone)
+    print(lawn_grass)
+    print(electronics)

@@ -1,4 +1,5 @@
 from src.product import Product, Smartphone, LawnGrass
+from src.category import Category
 
 def test_product_initialization():
     product = Product("Test Product", "Test Description", 100.0, 10)
@@ -58,3 +59,8 @@ def test_add_different_classes():
         product + smartphone
     except TypeError as e:
         assert str(e) == "Можно складывать только объекты одного класса"
+
+def test_logging_mixin(capsys):
+    product = Product("Test Product", "Test Description", 100.0, 10)
+    captured = capsys.readouterr()
+    assert "Создан объект класса Product с параметрами: ()" in captured.out

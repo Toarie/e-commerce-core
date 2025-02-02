@@ -1,9 +1,10 @@
-class Product:
+from src.base_product import BaseProduct
+from src.logging_mixin import LoggingMixin
+
+class Product(BaseProduct, LoggingMixin):
     def __init__(self, name: str, description: str, price: float, quantity: int):
-        self.name = name
-        self.description = description
+        super().__init__(name=name, description=description, price=price, quantity=quantity)
         self.__price = price  # Приватный атрибут
-        self.quantity = quantity
 
     @property
     def price(self):
@@ -16,10 +17,6 @@ class Product:
         else:
             print("Цена не должна быть нулевая или отрицательная")
 
-    @classmethod
-    def new_product(cls, product_data: dict):
-        return cls(**product_data)
-
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
@@ -27,6 +24,10 @@ class Product:
         if type(self) != type(other):
             raise TypeError("Можно складывать только объекты одного класса")
         return (self.price * self.quantity) + (other.price * other.quantity)
+
+    @classmethod
+    def new_product(cls, product_data: dict):
+        return cls(**product_data)
 
 class Smartphone(Product):
     def __init__(self, name: str, description: str, price: float, quantity: int, efficiency: str, model: str, memory: str, color: str):
