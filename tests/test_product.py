@@ -60,6 +60,12 @@ def test_add_different_classes():
     except TypeError as e:
         assert str(e) == "Можно складывать только объекты одного класса"
 
+def test_product_zero_quantity():
+    try:
+        Product("Test Product", "Test Description", 100.0, 0)
+    except ValueError as e:
+        assert str(e) == "Товар с нулевым количеством не может быть добавлен"
+
 def test_logging_mixin(capsys):
     product = Product("Test Product", "Test Description", 100.0, 10)
     captured = capsys.readouterr()

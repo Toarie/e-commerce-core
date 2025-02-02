@@ -33,3 +33,13 @@ def test_add_invalid_product():
         category.add_product("Not a product")
     except TypeError as e:
         assert str(e) == "Можно добавлять только объекты класса Product или его наследников"
+
+def test_average_price():
+    category = Category("Test Category", "Test Description")
+    assert category.average_price() == 0
+
+    product1 = Product("Test Product 1", "Test Description 1", 100.0, 10)
+    product2 = Product("Test Product 2", "Test Description 2", 200.0, 5)
+    category.add_product(product1)
+    category.add_product(product2)
+    assert category.average_price() == 150.0
